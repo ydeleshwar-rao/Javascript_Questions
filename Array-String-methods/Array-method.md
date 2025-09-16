@@ -18,7 +18,11 @@
 - **indexOf()** - Find element index
 - **join()** - Convert to string
 - **flat()** - Flatten nested arrays
-
+- **pop()** -  Remove last element
+- **push()** -Add element to end
+- **length()** - show the array size
+- **shift()** - Remove first element
+- **unshift()** - Add element to beginning
 
 # JavaScript Array Methods - Complete Reference Guide
 
