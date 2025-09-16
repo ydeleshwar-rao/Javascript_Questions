@@ -67,164 +67,6 @@ console.log(colors); // ['red', 'green']
 
 ---
 
-## 21. shift()
-
-**Description**
-The `shift()` method removes the first element from an array and returns that element.
-The `shift()` method changes the original array.
-The `shift()` method returns `undefined` if the array is empty.
-
-**Syntax**
-```javascript
-array.shift()
-```
-
-**Parameters**
-None
-
-**Return Value**
-| Type | Description |
-|------|-------------|
-| Any | The removed element from the array. `undefined` if the array is empty. |
-
-**Examples**
-```javascript
-// Example 1: Remove first fruit
-const fruits = ["Banana", "Orange", "Apple", "Mango"];
-const firstFruit = fruits.shift();
-console.log(firstFruit); // "Banana"
-console.log(fruits); // ["Orange", "Apple", "Mango"]
-
-// Example 2: Process queue (FIFO)
-const queue = ['first', 'second', 'third'];
-while(queue.length > 0) {
-  const item = queue.shift();
-  console.log('Processing:', item); // first, second, third
-}
-
-// Example 3: Shift from empty array
-const emptyArray = [];
-const result = emptyArray.shift();
-console.log(result); // undefined
-console.log(emptyArray); // []
-```
-
----
-
-## 22. unshift()
-
-**Description**
-The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array.
-The `unshift()` method changes the original array.
-
-**Syntax**
-```javascript
-array.unshift(item1, item2, ..., itemX)
-```
-
-**Parameters**
-| Parameter | Description |
-|-----------|-------------|
-| item1, item2, ..., itemX | Required. The item(s) to add to the beginning of the array. |
-
-**Return Value**
-| Type | Description |
-|------|-------------|
-| Number | The new length of the array. |
-
-**Examples**
-```javascript
-// Example 1: Add single element to beginning
-const fruits = ["Orange", "Apple", "Mango"];
-const newLength = fruits.unshift("Banana");
-console.log(newLength); // 4
-console.log(fruits); // ["Banana", "Orange", "Apple", "Mango"]
-
-// Example 2: Add multiple elements to beginning
-const numbers = [4, 5, 6];
-numbers.unshift(1, 2, 3);
-console.log(numbers); // [1, 2, 3, 4, 5, 6]
-
-// Example 3: Build priority queue
-const priorities = ['medium', 'low'];
-priorities.unshift('high');
-priorities.unshift('critical', 'urgent');
-console.log(priorities); // ['critical', 'urgent', 'high', 'medium', 'low']
-```
-
----
-
-## Summary
-
-Ye sab JavaScript Array methods hai jo aap daily development mein use kar sakte hai. Har method ka apna specific purpose hai:
-
-- **Iteration**: `forEach()`, `map()`
-- **Filtering**: `filter()`, `find()`, `findIndex()`
-- **Testing**: `some()`, `every()`, `includes()`
-- **Aggregation**: `reduce()`
-- **Manipulation**: `sort()`, `reverse()`, `splice()`
-- **Creation**: `slice()`, `concat()`, `flat()`
-- **Conversion**: `join()`
-- **Search**: `indexOf()`
-- **Add/Remove**: `push()`, `pop()`, `shift()`, `unshift()`
-- **Properties**: `length`
-
-**Key Points to Remember:**
-
-1. **Mutating vs Non-mutating methods:**
-   - **Mutating** (change original array): `push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()`, `reverse()`
-   - **Non-mutating** (return new array): `map()`, `filter()`, `slice()`, `concat()`, `flat()`
-
-2. **Return values:**
-   - New array: `map()`, `filter()`, `slice()`, `concat()`, `flat()`
-   - Boolean: `some()`, `every()`, `includes()`
-   - Single value: `find()`, `reduce()`, `pop()`, `shift()`
-   - Index: `findIndex()`, `indexOf()`
-   - Length: `push()`, `unshift()`
-
-3. **Performance tips:**
-   - Use `for` loop for simple iterations when performance is critical
-   - `some()` and `every()` stop early when condition is met
-   - `find()` and `findIndex()` stop at first match
-
-Reference ke liye ye guide save kar len aur practice karte rahen!
-array.map(function(currentValue, index, arr), thisValue)
-```
-
-**Parameters**
-| Parameter | Description |
-|-----------|-------------|
-| function() | Required. A function to run for each array element. |
-| currentValue | Required. The value of the current element. |
-| index | Optional. The index of the current element. |
-| arr | Optional. The array of the current element. |
-| thisValue | Optional. Default `undefined`. A value passed to the function as its `this` value. |
-
-**Return Value**
-| Type | Description |
-|------|-------------|
-| Array | A new array with the results of calling a function for each array element. |
-
-**Examples**
-```javascript
-// Example 1: Double each number
-const numbers = [1, 4, 9, 16];
-const doubled = numbers.map(x => x * 2);
-console.log(doubled); // [2, 8, 18, 32]
-
-// Example 2: Convert to uppercase
-const fruits = ['apple', 'banana', 'cherry'];
-const upperFruits = fruits.map(fruit => fruit.toUpperCase());
-console.log(upperFruits); // ['APPLE', 'BANANA', 'CHERRY']
-
-// Example 3: Extract property from objects
-const users = [{name: 'Ali', age: 25}, {name: 'Sara', age: 30}];
-const names = users.map(user => user.name);
-console.log(names); // ['Ali', 'Sara']
-```
-
----
-
 ## 2. filter()
 
 **Description**
@@ -1059,3 +901,163 @@ The `length` property is always one more than the index of the last element.
 
 **Syntax**
 ```javascript
+```
+---
+
+## 21. shift()
+
+**Description**
+The `shift()` method removes the first element from an array and returns that element.
+The `shift()` method changes the original array.
+The `shift()` method returns `undefined` if the array is empty.
+
+**Syntax**
+```javascript
+array.shift()
+```
+
+**Parameters**
+None
+
+**Return Value**
+| Type | Description |
+|------|-------------|
+| Any | The removed element from the array. `undefined` if the array is empty. |
+
+**Examples**
+```javascript
+// Example 1: Remove first fruit
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+const firstFruit = fruits.shift();
+console.log(firstFruit); // "Banana"
+console.log(fruits); // ["Orange", "Apple", "Mango"]
+
+// Example 2: Process queue (FIFO)
+const queue = ['first', 'second', 'third'];
+while(queue.length > 0) {
+  const item = queue.shift();
+  console.log('Processing:', item); // first, second, third
+}
+
+// Example 3: Shift from empty array
+const emptyArray = [];
+const result = emptyArray.shift();
+console.log(result); // undefined
+console.log(emptyArray); // []
+```
+
+---
+
+## 22. unshift()
+
+**Description**
+The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array.
+The `unshift()` method changes the original array.
+
+**Syntax**
+```javascript
+array.unshift(item1, item2, ..., itemX)
+```
+
+**Parameters**
+| Parameter | Description |
+|-----------|-------------|
+| item1, item2, ..., itemX | Required. The item(s) to add to the beginning of the array. |
+
+**Return Value**
+| Type | Description |
+|------|-------------|
+| Number | The new length of the array. |
+
+**Examples**
+```javascript
+// Example 1: Add single element to beginning
+const fruits = ["Orange", "Apple", "Mango"];
+const newLength = fruits.unshift("Banana");
+console.log(newLength); // 4
+console.log(fruits); // ["Banana", "Orange", "Apple", "Mango"]
+
+// Example 2: Add multiple elements to beginning
+const numbers = [4, 5, 6];
+numbers.unshift(1, 2, 3);
+console.log(numbers); // [1, 2, 3, 4, 5, 6]
+
+// Example 3: Build priority queue
+const priorities = ['medium', 'low'];
+priorities.unshift('high');
+priorities.unshift('critical', 'urgent');
+console.log(priorities); // ['critical', 'urgent', 'high', 'medium', 'low']
+```
+
+---
+
+## Summary
+
+Ye sab JavaScript Array methods hai jo aap daily development mein use kar sakte hai. Har method ka apna specific purpose hai:
+
+- **Iteration**: `forEach()`, `map()`
+- **Filtering**: `filter()`, `find()`, `findIndex()`
+- **Testing**: `some()`, `every()`, `includes()`
+- **Aggregation**: `reduce()`
+- **Manipulation**: `sort()`, `reverse()`, `splice()`
+- **Creation**: `slice()`, `concat()`, `flat()`
+- **Conversion**: `join()`
+- **Search**: `indexOf()`
+- **Add/Remove**: `push()`, `pop()`, `shift()`, `unshift()`
+- **Properties**: `length`
+
+**Key Points to Remember:**
+
+1. **Mutating vs Non-mutating methods:**
+   - **Mutating** (change original array): `push()`, `pop()`, `shift()`, `unshift()`, `splice()`, `sort()`, `reverse()`
+   - **Non-mutating** (return new array): `map()`, `filter()`, `slice()`, `concat()`, `flat()`
+
+2. **Return values:**
+   - New array: `map()`, `filter()`, `slice()`, `concat()`, `flat()`
+   - Boolean: `some()`, `every()`, `includes()`
+   - Single value: `find()`, `reduce()`, `pop()`, `shift()`
+   - Index: `findIndex()`, `indexOf()`
+   - Length: `push()`, `unshift()`
+
+3. **Performance tips:**
+   - Use `for` loop for simple iterations when performance is critical
+   - `some()` and `every()` stop early when condition is met
+   - `find()` and `findIndex()` stop at first match
+
+Reference ke liye ye guide save kar len aur practice karte rahen!
+array.map(function(currentValue, index, arr), thisValue)
+```
+
+**Parameters**
+| Parameter | Description |
+|-----------|-------------|
+| function() | Required. A function to run for each array element. |
+| currentValue | Required. The value of the current element. |
+| index | Optional. The index of the current element. |
+| arr | Optional. The array of the current element. |
+| thisValue | Optional. Default `undefined`. A value passed to the function as its `this` value. |
+
+**Return Value**
+| Type | Description |
+|------|-------------|
+| Array | A new array with the results of calling a function for each array element. |
+
+**Examples**
+```javascript
+// Example 1: Double each number
+const numbers = [1, 4, 9, 16];
+const doubled = numbers.map(x => x * 2);
+console.log(doubled); // [2, 8, 18, 32]
+
+// Example 2: Convert to uppercase
+const fruits = ['apple', 'banana', 'cherry'];
+const upperFruits = fruits.map(fruit => fruit.toUpperCase());
+console.log(upperFruits); // ['APPLE', 'BANANA', 'CHERRY']
+
+// Example 3: Extract property from objects
+const users = [{name: 'Ali', age: 25}, {name: 'Sara', age: 30}];
+const names = users.map(user => user.name);
+console.log(names); // ['Ali', 'Sara']
+```
+
+---
