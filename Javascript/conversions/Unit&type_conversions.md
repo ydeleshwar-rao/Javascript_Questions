@@ -1,221 +1,108 @@
-# Unit and Type Conversions
+// UnitAndTypeConversions.jsx
+// Real-world conversions commonly used in React projects
 
-A comprehensive React utility library for common type and unit conversions used in modern web development projects.
+import React from "react";
 
-## Overview
+// =============================
+// STRING -> NUMBER CONVERSIONS
+// =============================
 
-This library provides a collection of pure functions for converting between different data types and units commonly encountered in React applications, including CSS units, strings, numbers, dates, and data structures.
+// "1280px" -> 1280
+export const pxToNumber = (value) => parseInt(value, 10);
 
-## Installation
+// "1.5rem" -> 1.5
+export const remToNumber = (value) => parseFloat(value);
 
-Copy the `UnitAndTypeConversions.jsx` file into your project's utility folder:
+// "75%" -> 75
+export const percentToNumber = (value) => parseFloat(value);
 
-```bash
-src/utils/UnitAndTypeConversions.jsx
-```
+// "00123" -> 123
+export const stringToInt = (value) => parseInt(value, 10);
 
-## Usage
+// "12.45" -> 12.45
+export const stringToFloat = (value) => Number(value);
 
-Import the functions you need:
+// =============================
+// NUMBER -> STRING WITH UNITS
+// =============================
 
-```javascript
-import { 
-  pxToNumber, 
-  numberToPx, 
-  stringToBoolean,
-  dateToString 
-} from './utils/UnitAndTypeConversions';
-```
+// 1280 -> "1280px"
+export const numberToPx = (value) => `${value}px`;
 
-## API Reference
+// 1.5 -> "1.5rem"
+export const numberToRem = (value) => `${value}rem`;
 
-### String to Number Conversions
+// 75 -> "75%"
+export const numberToPercent = (value) => `${value}%`;
 
-Convert CSS units and strings to numeric values.
+// =============================
+// BOOLEAN CONVERSIONS (FOR FORMS)
+// =============================
 
-**`pxToNumber(value: string): number`**
-```javascript
-pxToNumber("1280px") // Returns: 1280
-```
+// "true" -> true
+export const stringToBoolean = (value) => value === "true";
 
-**`remToNumber(value: string): number`**
-```javascript
-remToNumber("1.5rem") // Returns: 1.5
-```
+// true -> "true"
+export const booleanToString = (value) => String(value);
 
-**`percentToNumber(value: string): number`**
-```javascript
-percentToNumber("75%") // Returns: 75
-```
+// =============================
+// DATE CONVERSIONS
+// =============================
 
-**`stringToInt(value: string): number`**
-```javascript
-stringToInt("00123") // Returns: 123
-```
+// "2026-01-08" -> Date object
+export const stringToDate = (value) => new Date(value);
 
-**`stringToFloat(value: string): number`**
-```javascript
-stringToFloat("12.45") // Returns: 12.45
-```
+// Date -> "2026-01-08"
+export const dateToString = (date) => date.toISOString().split("T")[0];
 
-### Number to String with Units
+// =============================
+// ARRAY / OBJECT CONVERSIONS
+// =============================
 
-Convert numeric values to formatted CSS unit strings.
+// "1,2,3" -> [1,2,3]
+export const csvToNumberArray = (value) =>
+  value.split(",").map((item) => Number(item));
 
-**`numberToPx(value: number): string`**
-```javascript
-numberToPx(1280) // Returns: "1280px"
-```
+// [1,2,3] -> "1,2,3"
+export const arrayToCsv = (arr) => arr.join(",");
 
-**`numberToRem(value: number): string`**
-```javascript
-numberToRem(1.5) // Returns: "1.5rem"
-```
+// =============================
+// JSON CONVERSIONS (API DATA)
+// =============================
 
-**`numberToPercent(value: number): string`**
-```javascript
-numberToPercent(75) // Returns: "75%"
-```
+// "{\"name\":\"John\"}" -> object
+export const jsonToObject = (value) => JSON.parse(value);
 
-### Boolean Conversions
+// object -> "{...}"
+export const objectToJson = (value) => JSON.stringify(value);
 
-Handle boolean values in forms and URL parameters.
+// =============================
+// LOCAL STORAGE CONVERSIONS
+// =============================
 
-**`stringToBoolean(value: string): boolean`**
-```javascript
-stringToBoolean("true") // Returns: true
-stringToBoolean("false") // Returns: false
-```
-
-**`booleanToString(value: boolean): string`**
-```javascript
-booleanToString(true) // Returns: "true"
-```
-
-### Date Conversions
-
-Convert between date strings and Date objects.
-
-**`stringToDate(value: string): Date`**
-```javascript
-stringToDate("2026-01-08") // Returns: Date object
-```
-
-**`dateToString(date: Date): string`**
-```javascript
-dateToString(new Date()) // Returns: "2026-01-08"
-```
-
-### Array and CSV Conversions
-
-Convert between arrays and comma-separated values.
-
-**`csvToNumberArray(value: string): number[]`**
-```javascript
-csvToNumberArray("1,2,3") // Returns: [1, 2, 3]
-```
-
-**`arrayToCsv(arr: any[]): string`**
-```javascript
-arrayToCsv([1, 2, 3]) // Returns: "1,2,3"
-```
-
-### JSON Conversions
-
-Parse and stringify JSON for API interactions.
-
-**`jsonToObject(value: string): object`**
-```javascript
-jsonToObject('{"name":"John"}') // Returns: { name: "John" }
-```
-
-**`objectToJson(value: object): string`**
-```javascript
-objectToJson({ name: "John" }) // Returns: '{"name":"John"}'
-```
-
-### Local Storage Helpers
-
-Simplified localStorage operations with automatic JSON handling.
-
-**`saveToLocalStorage(key: string, value: any): void`**
-```javascript
-saveToLocalStorage("user", { name: "John", age: 30 })
-```
-
-**`getFromLocalStorage(key: string): any`**
-```javascript
-getFromLocalStorage("user") // Returns: { name: "John", age: 30 }
-```
-
-## Common Use Cases
-
-### Responsive Design
-
-```javascript
-const breakpoint = "1280px";
-const width = pxToNumber(breakpoint);
-
-if (window.innerWidth < width) {
-  // Mobile layout
-}
-```
-
-### Form Handling
-
-```javascript
-const formData = {
-  isActive: stringToBoolean(urlParams.get('active')),
-  startDate: stringToDate(formValues.startDate)
+export const saveToLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
 };
-```
 
-### CSS-in-JS
-
-```javascript
-const spacing = 16;
-const styles = {
-  padding: numberToPx(spacing),
-  fontSize: numberToRem(1.25),
-  width: numberToPercent(100)
+export const getFromLocalStorage = (key) => {
+  const value = localStorage.getItem(key);
+  return value ? JSON.parse(value) : null;
 };
-```
 
-### API Data Processing
+// =============================
+// DEMO COMPONENT
+// =============================
 
-```javascript
-const apiResponse = '{"users":[1,2,3]}';
-const data = jsonToObject(apiResponse);
-```
+export default function ConversionDemo() {
+  const breakpoint = "1280px";
+  const bpNumber = pxToNumber(breakpoint);
 
-## Demo Component
-
-The library includes a demo component showing basic usage:
-
-```javascript
-import ConversionDemo from './utils/UnitAndTypeConversions';
-
-function App() {
-  return <ConversionDemo />;
+  return (
+    <div style={{ padding: 20 }}>
+      <h2>Real Project Conversions Demo</h2>
+      <p>String breakpoint: {breakpoint}</p>
+      <p>Converted number: {bpNumber}</p>
+      <p>Back to px: {numberToPx(bpNumber)}</p>
+    </div>
+  );
 }
-```
-
-## Features
-
-- Zero dependencies (React only)
-- Pure functions with no side effects
-- TypeScript-ready (add type definitions as needed)
-- Lightweight and tree-shakeable
-- Comprehensive coverage of common conversions
-
-## Browser Support
-
-Works in all modern browsers that support ES6+.
-
-## Contributing
-
-Contributions are welcome! Feel free to submit issues or pull requests.
-
-## License
-
-MIT License - feel free to use in personal and commercial projects.
